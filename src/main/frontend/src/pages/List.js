@@ -1,17 +1,31 @@
 import React from 'react'
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 import styles from '../styles/codingeducation.webflow.css'
+
 const List = () => {
-    const fetchDiaries = async () => {
-        try {
-          const response = await axios.get('http://localhost:8080/api/diary/getDiaries');
-          console.log(response.data); // 서버에서 받은 다이어리 데이터 출력
-        } catch (error) {
-          console.error('Error fetching diaries:', error);
-        }
-      };
-      
-      fetchDiaries();
+    const [boardList, setBoardList] = useState([]);
+    useEffect(()=>{
+        const fetchDiaries = async() => {
+            try{
+                const res = await axios.get('http://localhost:8080/api/diary/getDiaries');
+                console.log(res.data);
+                setBoardList(res.data);
+                
+                // setTimeout을 사용하면 상태 업데이트 후 값을 확인 가능
+                setTimeout(() => {
+                    console.log("Updated boardList (inside timeout):", boardList);
+                }, 0);
+            }catch(e){
+                console.log("error:", e);
+            }
+        };
+        fetchDiaries();
+    }, [])
+    
+    useEffect(() => {
+        console.log("list 값 확인:",boardList);
+    }, [boardList])
       
   return (
     <body className="body">
@@ -35,146 +49,30 @@ const List = () => {
                 </div>
             </div>
             <ul className="diarylist-ul">
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">월요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">titletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitletitle</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">This is some text inside of a div block.This is some text inside of a div block.This is some text inside of a div block.This is some text inside of a div block.This is some text inside of a div block.This is some text inside of a div block.This is some text inside of a div block.</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">화요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">제목제목제목제목제목제목제목제목제목제목제목</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.여기에 내용을 적어주세요.</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">수요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">numbertitlenumbertitlenumbertitlenumbertitlenumbertitlenumbertitlenumbertitlenumbertitlenumbertitlenumbertitle</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">목요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">symbolstitlesymbolstitlesymbolstitlesymbolstitlesymbolstitlesymbolstitlesymbolstitlesymbolstitlesymbolstitle</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">! @ # $ % ^ &amp; * ( ) _ = + \ / &lt; &gt; : ; &#x27; &quot; ★ ☆ ※ ○ ● ◎ ▲ △ → ← ↑ ↓ ↔ ☎ ☜ ☞ ± ∂ ㉠ ㉡ ㉢ ㉣ ㉤ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ 【 】 『 』 《 》 ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ① ② ③ ⒜ ⒝ ⒞ ⑴ ⑵ ⑶</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">금요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">UppercaseUppercaseUppercaseUppercaseUppercaseUppercaseUppercaseUppercaseUppercase</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">토요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">lowercaselowercaselowercaselowercaselowercaselowercaselowercase</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
-                <li className="diarylist-li">
-                <a href="#" className="diarylist-item w-inline-block">
-                    <div className="item-left">
-                    <div className="day-box">
-                        <div className="txt-list">일요일</div>
-                    </div>
-                    <div className="date-box">
-                        <div className="txt-list">00월 00일</div>
-                    </div>
-                    </div>
-                    <div className="item-right">
-                    <div className="title-box">
-                        <div className="txt-list ell01">title테스트title테스트title테스트title테스트title테스트title테스트title테스트</div>
-                    </div>
-                    <div className="content-box">
-                        <div className="txt-list ell02">테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest테스트TESTtest</div>
-                    </div>
-                    </div>
-                </a>
-                </li>
+                {boardList &&
+                    boardList.map((board) => (
+                    <li className="diarylist-li" key={board.idx}>
+                        <a href="#" className="diarylist-item w-inline-block">
+                            <div className="item-left">
+                            <div className="day-box">
+                                <div className="txt-list">월요일</div>
+                            </div>
+                            <div className="date-box">
+                                <div className="txt-list">00월 00일</div>
+                            </div>
+                            </div>
+                            <div className="item-right">
+                            <div className="title-box">
+                                <div className="txt-list ell01">{board.title}</div>
+                            </div>
+                            <div className="content-box">
+                                <div className="txt-list ell02">{board.content}</div>
+                            </div>
+                            </div>
+                        </a>
+                    </li>   
+                    ))
+                }
             </ul><button className="btn-write"></button>
             </div>
         </div>
