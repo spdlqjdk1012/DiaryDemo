@@ -6,4 +6,9 @@
     <select id="selectDiary" resultType="Map">
         select * from diary
     </select>
+
+    <insert id="insertDiary"  parameterType="Map"> 
+        INSERT INTO diary (title, content, created_at)
+        VALUES (#{title}, #{content}, NOW())
+    </insert>    
 </mapper>

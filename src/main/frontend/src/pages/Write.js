@@ -1,11 +1,34 @@
 import React from 'react'
 import '../styles/codingeducation.webflow.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Write = () => {
+  const navigate = useNavigate();  
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   
+  const handleWrite = async () => {
+    alert("title:"+ title+ " content:"+content);
+    if (!title || !content){
+        alert("제목과 내용을 입력해주세요.")
+        return;
+    }
+    try{
+        const diaryData = {title, content};
+        const res = await axios.post('http://localhost:8080/api/diary/addDiary', diaryData);
+        if(res.data === "Success"){
+            alert("저장성공");
+            navigate("/list");
+        }else{
+            alert("저장 실패!");
+        }
+    }catch(e){
+        console.log(e)    
+    }
+  }
+
   return (
     <div className="body">
         <div className="wrapper">
@@ -57,7 +80,7 @@ const Write = () => {
                     <a href="#" className="etc-item w-inline-block">
                         <img src={process.env.PUBLIC_URL+'/img/delete_icon.svg'} loading="lazy" alt="" className="icon-etc"/>
                     </a>
-                    <a href="#" className="etc-item w-inline-block">
+                    <a onClick={handleWrite} className="etc-item w-inline-block">
                         <img src={process.env.PUBLIC_URL+'/img/correction_icon.svg'} loading="lazy" alt="" className="icon-etc"/>
                     </a>
                 </div>
