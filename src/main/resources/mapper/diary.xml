@@ -11,4 +11,10 @@
         INSERT INTO diary (title, content, created_at)
         VALUES (#{title}, #{content}, NOW())
     </insert>    
+
+    <select id="selectDiaryById" parameterType="Map" resultType="Map">
+        SELECT id, title, content, created_at as createdAt 
+        FROM diary 
+        WHERE id = #{id}
+    </select>
 </mapper>

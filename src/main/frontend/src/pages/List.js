@@ -23,7 +23,10 @@ const List = () => {
     const handleWrite = () => {
         navigate("/write");
     }
-      
+    
+    const handleDetail = async (id) => {
+        navigate(`/detail/${id}`);
+    }
   return (
     <div className="body">
         <div className="wrapper">
@@ -31,7 +34,7 @@ const List = () => {
                 <div className="container">
                     <div className="main-diarylist _01">
                         <div className="sticker-area">
-                            <img src={process.env.PUBLIC_URL + '/img/listimage4.png'} loading="lazy" alt="" className="sticker-list list-top"/>
+                            <img src={process.env.PUBLIC_URL + '/img/listimage4.png'} loading="lazy" className="sticker-list list-top"/>
                         </div>
                         <div className="selectbox-area">
                             <div className="form-block-2 w-form">
@@ -53,11 +56,11 @@ const List = () => {
                             }
                             {boardList &&
                                 boardList.map((board) => (
-                                <li className="diarylist-li" key={board.idx}>
+                                <li className="diarylist-li" key={board.id} onClick={()=>handleDetail(board.id)}>
                                     <a href="#" className="diarylist-item w-inline-block">
                                         <div className="item-left">
                                         <div className="day-box">
-                                            <div className="txt-list">월요일</div>
+                                            <div className="txt-list">월요일{board.id}</div>
                                         </div>
                                         <div className="date-box">
                                             <div className="txt-list">00월 00일</div>
