@@ -6,12 +6,21 @@ import axios from 'axios';
 
 const Detail = () => {
   const navigate = useNavigate(); 
-  const handleWrite = async () => {
-    
-  }
-
+  
   const { id } = useParams();
   const [board, setBoard] = useState('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setBoard(prev=>({
+        ...prev,
+        [name]: value
+    }))
+  }
+  const handleUpdate = async () => {
+    const res = await axios.put(`http://localhost:8080/api/diary/updateDiary/${id}`, board);
+    alert(res.data);
+    //setBoard(res);
+  }
 
   useEffect(()=>{
     const fetchDiary = async() => {
@@ -57,11 +66,14 @@ const Detail = () => {
                             <input className="input-date w-input"  placeholder="2024년 00월 00일" type="text"/>
                             
                             <input className="input-title w-input" 
-                            value={board.title} type="text"/>
+                            value={board.title} type="text"
+                            name="title"
+                            onChange={handleChange}/>
 
                             <textarea name="content" 
                             className="textarea-notes w-input"
-                            value={board.content}></textarea>
+                            value={board.content}
+                            onChange={handleChange}></textarea>
                         </figcaption>
                         </figure>
                     </form>
@@ -76,7 +88,7 @@ const Detail = () => {
                     <a href="#" className="etc-item w-inline-block">
                         <img src={process.env.PUBLIC_URL+'/img/delete_icon.svg'} loading="lazy" alt="" className="icon-etc"/>
                     </a>
-                    <a onClick={handleWrite} className="etc-item w-inline-block">
+                    <a onClick={handleUpdate} className="etc-item w-inline-block">
                         <img src={process.env.PUBLIC_URL+'/img/correction_icon.svg'} loading="lazy" alt="" className="icon-etc"/>
                     </a>
                 </div>

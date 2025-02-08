@@ -17,4 +17,11 @@
         FROM diary 
         WHERE id = #{id}
     </select>
+
+    <update id="updateDiary" parameterType="Map">
+        UPDATE diary 
+        SET title = #{title}, 
+            content = #{content}
+        WHERE id = #{id}
+    </update>    
 </mapper>

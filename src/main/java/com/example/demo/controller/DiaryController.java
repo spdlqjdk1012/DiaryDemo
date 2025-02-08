@@ -22,27 +22,39 @@ public class DiaryController {
     @Autowired
     SqlSession sqlSession;
 
+    //list
     @GetMapping("/getDiaries")
     public List<Map<String, Object>> getDiaries() {
         return sqlSession.selectList("diary.selectDiary");
     }    
 
+    //insert
     @PostMapping("/addDiary")
     public ResponseEntity<String> addDiary(@RequestBody Map<String, Object> diaryData) {
         sqlSession.insert("diary.insertDiary", diaryData);
         return ResponseEntity.ok("Success");
     }
 
-@GetMapping("/getDiary/{id}")
-public ResponseEntity<Map<String, Object>> getDiary(@PathVariable Long id) {
-   try {
-       Map<String, Object> param = new HashMap<>();
-       param.put("id", id);
-       Map<String, Object> diary = sqlSession.selectOne("diary.selectDiaryById", param);
-       return ResponseEntity.ok(diary);
-   } catch (Exception e) {
-       e.printStackTrace();
-       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-   }
-}   
+    //select
+    @GetMapping("/getDiary/{id}")
+    public ResponseEntity<Map<String, Object>> getDiary(@PathVariable Long id) {
+        try {
+            Map<String, Object> param = new HashMap<>();
+            param.put("id", id);
+            Map<String, Object> diary = sqlSession.selectOne("diary.selectDiaryById", param);
+            return ResponseEntity.ok(diary);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }   
+
+    //update
+    @PostMapping("/updateDiary/{id}")
+    public ResponseEntity<String> updateDiary(@PathVariable Long id, @RequestBody Map<String, Object> diaryData) {
+        diaryData.put("id", id);
+        sqlSession.update("diary.updateDiary", diaryData);
+        return ResponseEntity.ok("Success");
+    }
+
 }
