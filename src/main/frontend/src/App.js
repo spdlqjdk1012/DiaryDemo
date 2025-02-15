@@ -9,6 +9,11 @@ import UseRefSample from "./pages/study/4UseRefSample";
 import PropSample from "./pages/study/5PropSample";
 import UseContextSample from "./pages/study/6UseContextSample";
 import RecoilSample from "./pages/study/7RecoilSample";
+import Test from "./pages/Test"
+import Login from "./pages/Login";
+import ChatPage from "./pages/ChatPage";
+import RoomList from "./pages/testChat/RoomList";
+import ChatRoom from "./pages/testChat/ChatRoom";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +28,15 @@ function App() {
         <Route path="/propSample" element={<PropSample/>} />
         <Route path="/useContextSample" element={<UseContextSample/>} />
         <Route path="/recoilSample" element={<RecoilSample/>} />
+
+        <Route path="/" element={<Test/>} />
+        <Route path="/login" element={<Login/>} />
+
+        <Route path="/chat" element={<ChatPage />} />
+        
+        
+        <Route path="/roomList" element={<RoomList />} />
+        <Route path="/chat/:roomId" element={<ChatRoom />} />
       </Routes>
     </BrowserRouter>
   );
