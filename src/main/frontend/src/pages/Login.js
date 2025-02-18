@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/auth';
+import KakaoLoginButton from '../components/KakaoLoginButton';
+import NaverLoginButton from '../components/NaverLoginButton';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -112,6 +114,9 @@ const Login = () => {
             회원가입하기
           </a>
         </div>
+
+        <KakaoLoginButton/>
+        <NaverLoginButton/>
       </div>
     </div>
   );
