@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import ChatPage from "./pages/ChatPage";
 import RoomList from "./pages/testChat/RoomList";
 import ChatRoom from "./pages/testChat/ChatRoom";
+import ImgUpload from "./pages/testChat/ImgUpload";
 function App() {
   return (
     <BrowserRouter>
@@ -37,6 +38,7 @@ function App() {
         
         <Route path="/roomList" element={<RoomList />} />
         <Route path="/chat/:roomId" element={<ChatRoom />} />
+        <Route path="/imgupload" element={<ImgUpload />} />
       </Routes>
     </BrowserRouter>
   );

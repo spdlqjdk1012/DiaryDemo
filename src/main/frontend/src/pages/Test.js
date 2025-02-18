@@ -22,6 +22,10 @@ const Test = () => {
   return (
     <div>
         main
+        <img 
+  src="https://brip.s3.ap-northeast-2.amazonaws.com/598823fd-32f3-47fa-95d4-cddedf341ca6_s.png" 
+  alt="프로필 이미지" 
+/>
         {isLoggedIn ? (
           <button onClick={handleLogout}>로그아웃</button>
         ) : (
