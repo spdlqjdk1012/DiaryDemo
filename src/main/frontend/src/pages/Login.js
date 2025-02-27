@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { login } from '../api/auth';
 import KakaoLoginButton from '../components/KakaoLoginButton';
 import NaverLoginButton from '../components/NaverLoginButton';
+import GoogleLoginButton from '../components/GoogleLoginButton';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -117,6 +118,7 @@ const Login = () => {
 
         <KakaoLoginButton/>
         <NaverLoginButton/>
+        <GoogleLoginButton/>
       </div>
     </div>
   );

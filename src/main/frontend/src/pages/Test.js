@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../api/auth'
+import { Link } from 'react-router-dom';
 const Test = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -23,15 +24,15 @@ const Test = () => {
     <div>
         main
         <img 
-  src="https://brip.s3.ap-northeast-2.amazonaws.com/598823fd-32f3-47fa-95d4-cddedf341ca6_s.png" 
-  alt="프로필 이미지" 
-/>
+          src="https://brip.s3.ap-northeast-2.amazonaws.com/598823fd-32f3-47fa-95d4-cddedf341ca6_s.png" 
+          alt="프로필 이미지" 
+        />
         {isLoggedIn ? (
           <button onClick={handleLogout}>로그아웃</button>
         ) : (
           <button onClick={handleLogin}>로그인</button>
         )}
-        
+        <Link to="/inquiryList">문의</Link>
     </div>
   )
 }
