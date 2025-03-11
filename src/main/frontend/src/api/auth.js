@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-//const BASE_URL = 'http://localhost:8080/api/user';
-const BASE_URL = 'https://light-dolls-repair.loca.lt/api/user';
+const BASE_URL = 'http://localhost:8080/api/user';
+//const BASE_URL = 'https://light-dolls-repair.loca.lt/api/user';
 
 export const login = async (email, password) => {
   try {

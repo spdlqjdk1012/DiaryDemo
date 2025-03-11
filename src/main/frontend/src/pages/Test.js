@@ -32,7 +32,8 @@ const Test = () => {
         ) : (
           <button onClick={handleLogin}>로그인</button>
         )}
-        <Link to="/inquiryList">문의</Link>
+        <div><Link to="/inquiryList">문의</Link></div>
+        <div><Link to="/roomList">채팅방</Link></div>
     </div>
   )
 }
