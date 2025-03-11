@@ -56,6 +56,9 @@ const ChatRoom = () => {
           }
           break;
 
+        case 'JOIN_ROOM_FAIL':
+          alert("방 입장 실패패"+ data.msg);         
+          break;
         case 'CHAT':
           setMessages(prev => [...prev, {
             content: data.content,
